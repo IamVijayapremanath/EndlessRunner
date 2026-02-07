@@ -1,0 +1,31 @@
+Temp/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# Unity generated files
+Library/
+Temp/
+Obj/
+Build/
+Logs/
+
+# User-specific settings
+UserSettings/
+
+# Unity project files that can be ignored
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# Asset Store tools
+*.unitypackage
+
+# Packages
+Packages/
