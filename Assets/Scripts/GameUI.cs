@@ -38,7 +38,7 @@ public class GameUI : MonoBehaviour
     void UpdateUI()
     {
         score_text.text = "Score: " + Mathf.FloorToInt(score);
-        life_text.text = "Lives: " + life;
+        life_text.text = "Life: " + life;
     }
 
     public void StartGame()
