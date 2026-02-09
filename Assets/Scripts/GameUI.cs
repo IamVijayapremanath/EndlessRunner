@@ -12,9 +12,17 @@ public class GameUI : MonoBehaviour
 
     private bool isGameRunning = false;
 
+    public GameObject play;
+    public GameObject restart;
+
     void Start()
     {
-        StartGame();
+        Time.timeScale = 0;
+        isGameRunning = false;
+        play.SetActive(true);
+        restart.SetActive(false);
+
+        UpdateUI();
     }
 
     void Update()
@@ -22,21 +30,41 @@ public class GameUI : MonoBehaviour
         if (isGameRunning)
         {
             score += Time.deltaTime;
-            score_text.text = "Score: " + Mathf.FloorToInt(score);
-            life_text.text = "Lives: " + life;
+
+            UpdateUI();
         }
+    }
+
+    void UpdateUI()
+    {
+        score_text.text = "Score: " + Mathf.FloorToInt(score);
+        life_text.text = "Lives: " + life;
     }
 
     public void StartGame()
     {
+
+        Debug.Log("PLAY CLICKED");
         isGameRunning = true;
         Time.timeScale = 1;
+
+        play.SetActive(false);
+        restart.SetActive(false);
     }
-    
+
+
+    public void RestartGame()
+    {
+        Debug.Log("Restart CLICKED");
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 
     public void DecreaseLife()
     {
-        if (!isGameRunning) return;
+        if (!isGameRunning)
+            return;
 
         life--;
 
@@ -44,12 +72,17 @@ public class GameUI : MonoBehaviour
         {
             GameOver();
         }
+        else
+        {
+            UpdateUI();
+        }
     }
 
     void GameOver()
     {
         isGameRunning = false;
         Time.timeScale = 0;
+        restart.SetActive(true);
     }
 
 }
